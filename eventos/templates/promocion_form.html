@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<link rel="stylesheet" href="{% static 'eventos/css/form.css' %}">
+  <h2>{% if form.instance.idpromocion %}Actualizar{% else %}Crear{% endif %} Promoción</h2>
+  <form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">{% if form.instance.idpromocion %}Actualizar{% else %}Crear{% endif %}</button>
+  </form>
+{% endblock %}
+

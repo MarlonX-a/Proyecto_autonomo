@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<link rel="stylesheet" href="{% static 'eventos/css/form.css' %}">
+<h1>{% if form.instance.pk %}Editar Eventualidad{% else %}Crear Nueva Eventualidad{% endif %}</h1>
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Guardar</button>
+</form>
+<a href="{% url 'eventualidad_list' %}">Cancelar</a>
+{% endblock %}

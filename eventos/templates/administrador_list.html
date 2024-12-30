@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>Lista de Administradores</h1>
+<table>
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Nombre</th>
+            <th>Correo</th>
+            <th>Teléfono</th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for administrador in administradores %}
+        <tr>
+            <td>{{ administrador.idadmin }}</td>
+            <td>{{ administrador.nombre_negocio }}</td>
+            <td>{{ administrador.correo_negocio }}</td>
+            <td>{{ administrador.telefono_negocio }}</td>
+            <td>
+                <a href="{% url 'administrador_update' administrador.idadmin %}">Editar</a>
+                <a href="{% url 'administrador_delete' administrador.idadmin %}">Eliminar</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+<a href="{% url 'administrador_create' %}">Crear nuevo administrador</a>
+{% endblock %}

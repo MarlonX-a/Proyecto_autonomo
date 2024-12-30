@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+  <h1>Lista de Alquileres y Servicios</h1>
+  <table>
+    <thead>
+      <tr>
+        <th>ID Alquiler</th>
+        <th>Servicio</th>
+        <th>Cantidad</th>
+        <th>Costo Total</th>
+        <th>Calificación Cliente</th>
+        <th>Acciones</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for alquiler_servicio in alquiler_servicios %}
+        <tr>
+          <td>{{ alquiler_servicio.idalquiler.idalquiler }}</td>
+          <td>{{ alquiler_servicio.idservicio.descripcion_servicio }}</td>
+          <td>{{ alquiler_servicio.cantidad }}</td>
+          <td>{{ alquiler_servicio.costo_total }}</td>
+          <td>{{ alquiler_servicio.calificacion_cliente }}</td>
+          <td>
+            <a href="{% url 'alquiler_servicio_update' alquiler_servicio.idalquiler_servicio %}">Editar</a>
+            <a href="{% url 'alquiler_servicio_delete' alquiler_servicio.idalquiler_servicio %}">Eliminar</a>
+          </td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  <a href="{% url 'alquiler_servicio_create' %}">Agregar nuevo alquiler-servicio</a>
+{% endblock %}
+

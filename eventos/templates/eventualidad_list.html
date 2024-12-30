@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>Lista de Eventualidades</h1>
+<table>
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Descripción</th>
+            <th>Fecha</th>
+            <th>Tipo</th>
+            <th>Costo</th>
+            <th>Responsable</th>
+            <th>Fecha Resolución</th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for eventualidad in eventualidades %}
+        <tr>
+            <td>{{ eventualidad.ideventualidad }}</td>
+            <td>{{ eventualidad.descripcion_eventualidad }}</td>
+            <td>{{ eventualidad.fecha_eventualidad }}</td>
+            <td>{{ eventualidad.tipo_eventualidad }}</td>
+            <td>{{ eventualidad.costo_eventualidad }}</td>
+            <td>{{ eventualidad.responsable }}</td>
+            <td>{{ eventualidad.fecha_resolucion }}</td>
+            <td>
+                <a href="{% url 'eventualidad_update' eventualidad.ideventualidad %}">Editar</a>
+                <a href="{% url 'eventualidad_delete' eventualidad.ideventualidad %}">Eliminar</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+<a href="{% url 'eventualidad_create' %}">Crear nueva eventualidad</a>
+{% endblock %}

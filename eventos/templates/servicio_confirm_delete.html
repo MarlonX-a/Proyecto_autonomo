@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<link rel="stylesheet" href="{% static 'eventos/css/eliminar.css' %}">
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Eliminar Servicio</title>
+</head>
+<body>
+    <h1>¿Estás seguro de que quieres eliminar este servicio?</h1>
+    <p>{{ servicio.descripcion_servicio }}</p>
+    <form method="post">
+        {% csrf_token %}
+        <button type="submit">Sí, eliminar</button>
+    </form>
+    <a href="{% url 'servicio_list' %}">Cancelar</a>
+</body>
+</html>
+{% endblock %}

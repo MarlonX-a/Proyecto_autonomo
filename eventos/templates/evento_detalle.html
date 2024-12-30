@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <h1>Detalles del Evento: {{ evento.tipo_de_evento }}</h1>
+  <p><strong>Descripción:</strong> {{ evento.descripcion }}</p>
+  <p><strong>Valor referencial:</strong> {{ evento.valor_referencial }}</p>
+  <p><strong>Horas permitidas:</strong> {{ evento.numero_horas_permitidas }}</p>
+  <img src="{{ evento.tipo_de_evento.url_imagen.url }}" alt="Imagen del Tipo" style="max-width: 100px; max-height: 100px;">
+
+  <a href="{% url 'home' %}">Volver al inicio</a>
+{% endblock %}

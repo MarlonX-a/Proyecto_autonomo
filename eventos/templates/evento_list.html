@@ -1,0 +1,151 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="event-list-container">
+    <h1>Lista de Eventos</h1>
+    {% if is_dueno or is_admin %}
+        <a href="{% url 'evento_create' %}" class="btn btn-primary">Crear Nuevo Evento</a>
+    {% endif %}
+    <div class="eventos-grid">
+        {% for evento in eventos %}
+            <div class="evento-card">
+                <div class="evento-card-img">
+                    <img src="{{ evento.tipo_de_evento.url_imagen.url }}" alt="Imagen del evento">
+                </div>
+                <div class="evento-card-body">
+                    <h3 class="evento-title">{{ evento.descripcion }}</h3>
+                    <p class="evento-desc">Valor Referencial: ${{ evento.valor_referencial }}</p>
+                    <p class="evento-desc">Horas Permitidas: {{ evento.numero_horas_permitidas }}</p>
+                    <p class="evento-desc">Valor Extra por Hora: ${{ evento.valor_extra_hora }}</p>
+                    <p class="evento-desc">Tipo de Evento: {{ evento.tipo_de_evento.nombre_evento }}</p>
+                    <div class="evento-actions">
+                        {% if is_dueno or is_admin %}
+                            <a href="{% url 'evento_update' evento.idevento %}" class="btn btn-secondary">Editar</a>
+                            <a href="{% url 'evento_delete' evento.idevento %}" class="btn btn-danger">Eliminar</a>
+                        {% elif is_usuario %}
+                            <a href="{% url 'alquiler_list' %}" class="btn btn-success">Reservar</a>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        {% empty %}
+            <p class="no-eventos">No hay eventos disponibles en este momento.</p>
+        {% endfor %}
+    </div>
+</div>
+
+<!-- Estilos CSS embebidos -->
+<style>
+.event-list-container {
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.event-list-container h1 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+.btn {
+    display: inline-block;
+    padding: 10px 20px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: background-color 0.3s ease-in-out;
+}
+
+.btn-primary {
+    background-color: #1abc9c;
+    color: #fff;
+}
+
+.btn-primary:hover {
+    background-color: #16a085;
+}
+
+.btn-secondary {
+    background-color: #007bff;
+    color: #fff;
+}
+
+.btn-secondary:hover {
+    background-color: #0056b3;
+}
+
+.btn-danger {
+    background-color: #e74c3c;
+    color: #fff;
+}
+
+.btn-danger:hover {
+    background-color: #c0392b;
+}
+
+.btn-success {
+    background-color: #28a745;
+    color: #fff;
+}
+
+.btn-success:hover {
+    background-color: #218838;
+}
+
+.eventos-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+    padding: 20px;
+}
+
+.evento-card {
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    text-align: center;
+    padding: 15px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.evento-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
+
+.evento-card-img img {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+}
+
+.evento-card-body {
+    padding: 15px;
+}
+
+.evento-title {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+}
+
+.evento-desc {
+    font-size: 1rem;
+    margin-bottom: 10px;
+    color: #555;
+}
+
+.evento-actions {
+    margin-top: 15px;
+}
+
+.no-eventos {
+    font-size: 1.2rem;
+    color: #555;
+    margin-top: 20px;
+    text-align: center;
+}
+</style>
+{% endblock %}

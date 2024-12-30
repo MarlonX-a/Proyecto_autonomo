@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<link rel="stylesheet" href="{% static 'eventos/css/list2.css' %}">
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Lista de Servicios</title>
+</head>
+<body>
+    <h1>Servicios</h1>
+    <a href="{% url 'servicio_create' %}">Crear Servicio</a>
+    <table>
+        <thead>
+            <tr>
+                <th>Descripción</th>
+                <th>Valor Unidad</th>
+                <th>Estado</th>
+                <th>Fecha de Entrega</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for servicio in servicios %}
+            <tr>
+                <td>{{ servicio.descripcion_servicio }}</td>
+                <td>{{ servicio.valor_unidad }}</td>
+                <td>{{ servicio.estado_servicio }}</td>
+                <td>{{ servicio.fecha_entrega }}</td>
+                <td>
+                    <a href="{% url 'servicio_edit' servicio.pk %}">Editar</a> | 
+                    <a href="{% url 'servicio_delete' servicio.pk %}">Eliminar</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>
+{% endblock %}

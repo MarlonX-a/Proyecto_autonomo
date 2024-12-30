@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<link rel="stylesheet" href="{% static 'eventos/css/form.css' %}">
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{% if foto %}Editar{% else %}Crear{% endif %} Foto de Alquiler</title>
+</head>
+<body>
+    <h1>{% if foto %}Editar{% else %}Crear{% endif %} Foto de Alquiler</h1>
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">{% if foto %}Guardar Cambios{% else %}Crear Foto{% endif %}</button>
+    </form>
+    <a href="{% url 'listar_fotos_alquiler' %}">Volver a la lista</a>
+</body>
+</html>
+{% endblock %}

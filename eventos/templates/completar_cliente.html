@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Completar Información de Cliente</title>
+</head>
+<body>
+    <h2>Completar Información de Cliente</h2>
+    <p>Correo Electronico: {{ user.email}}</p>
+    <p>Hola {{ user.username }}, por favor completa tu información.</p>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Enviar</button>
+    </form>
+</body>
+</html>
+{% endblock %}

@@ -1,0 +1,104 @@
+/* Estilos generales */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f0f2f5;
+    margin: 0;
+    padding: 0;
+}
+
+/* Estilos para la barra lateral */
+#sidebar {
+    background: linear-gradient(45deg, #2c3e50, #4ca1af);
+    min-width: 250px;
+    max-width: 250px;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    overflow-y: auto;
+    transition: all 0.3s ease;
+    color: #ecf0f1;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);  /* Sombra para separar la barra lateral */
+}
+
+.sidebar-header {
+    padding: 20px;
+    background: #2c3e50;
+    text-align: center;
+    color: #ecf0f1;
+}
+
+.sidebar-header h3 {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #fff;
+}
+
+.components {
+    padding: 0;
+    list-style: none;
+}
+
+.components a {
+    padding: 15px 20px;
+    display: block;
+    color: #fff;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+}
+
+.components a:hover {
+    background-color: #34495e;
+    text-decoration: none;
+}
+
+/* Estilos para el contenido principal */
+#page-content-wrapper {
+    width: 100%;
+    margin-left: 250px;
+    padding: 20px;
+    transition: all 0.3s ease;
+}
+
+.navbar {
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.btn-dark {
+    background-color: #2c3e50;
+    border-color: #2c3e50;
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+.btn-dark:hover {
+    background-color: #34495e;
+    border-color: #34495e;
+}
+
+/* Estilos para el footer */
+.footer {
+    background-color: #2c3e50;
+    color: #fff;
+    padding: 20px 0;
+}
+
+.footer a {
+    color: #4ca1af;
+}
+
+.footer-logo-img {
+    max-width: 100px;
+}
+
+.footer-info p {
+    margin: 0;
+}
+
+/* Efectos para colapsar la barra lateral */
+#wrapper.toggled #sidebar {
+    margin-left: -250px;  /* Colapsa la barra lateral */
+}
+
+#wrapper.toggled #page-content-wrapper {
+    margin-left: 0;  /* Ajusta el contenido principal cuando la barra lateral se colapsa */
+}

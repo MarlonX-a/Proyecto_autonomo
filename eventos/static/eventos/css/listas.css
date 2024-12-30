@@ -1,0 +1,108 @@
+/* Estilos generales de la tabla */
+.table {
+    width: 100%;
+    margin: 20px 0;
+    border-collapse: collapse;
+    border-radius: 10px;
+    overflow: hidden;  /* Para bordes redondeados */
+}
+
+/* Encabezado de la tabla */
+.thead-dark {
+    background-color: #343a40;
+    color: white;
+}
+
+.table th, .table td {
+    padding: 12px 15px;
+    text-align: center;
+    vertical-align: middle;
+}
+
+/* Bordes y sombreados */
+.table-bordered {
+    border: 1px solid #dee2e6;
+}
+
+.table-bordered td, .table-bordered th {
+    border: 1px solid #dee2e6;
+}
+
+/* Efectos hover para filas */
+.table-striped tbody tr:nth-of-type(odd) {
+    background-color: #f9f9f9;  /* Color alternado en filas */
+}
+
+.table-hover tbody tr:hover {
+    background-color: #f1f1f1;  /* Color al pasar el ratón */
+    cursor: pointer;  /* Cambiar el cursor a mano */
+}
+
+/* Efectos de las etiquetas de estado (badge) */
+.badge {
+    font-weight: bold;
+    padding: 6px 12px;
+    border-radius: 12px;
+    text-transform: uppercase;
+    transition: background-color 0.3s ease;
+}
+
+/* Estilos para las etiquetas de estado */
+.badge-nuevo {
+    background-color: #3498db;
+    color: white;
+}
+
+.badge-abierto {
+    background-color: #7f8c8d;
+    color: white;
+}
+
+.badge-en-proceso {
+    background-color: #1abc9c;
+    color: white;
+}
+
+.badge-resuelto {
+    background-color: #2ecc71;
+    color: white;
+}
+
+.badge-cerrado {
+    background-color: #e74c3c;
+    color: white;
+}
+
+/* Efecto hover para los badges */
+.badge:hover {
+    opacity: 0.8;  /* Efecto de opacidad en hover */
+}
+
+/* Estilos para los botones de acción */
+.btn-outline-primary, .btn-outline-danger, .btn-outline-success {
+    border-width: 2px;  /* Aumentar el grosor del borde */
+    font-weight: bold;
+}
+
+.btn-outline-primary:hover {
+    background-color: #3498db;
+    color: white;
+}
+
+.btn-outline-danger:hover {
+    background-color: #e74c3c;
+    color: white;
+}
+
+.btn-outline-success:hover {
+    background-color: #2ecc71;
+    color: white;
+}
+
+/* Estilo para las acciones y botones */
+.btn-group-sm .btn {
+    padding: 6px 12px;  /* Ajustar el tamaño de los botones */
+    border-radius: 20px;  /* Bordes redondeados */
+    font-size: 0.9rem;  /* Tamaño de fuente más pequeño */
+    margin: 2px;  /* Espaciado entre botones */
+}

@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<link rel="stylesheet" href="{% static 'eventos/css/listas.css' %}">
+<div class="container my-5">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h1 class="mb-0">Lista de Alquileres</h1>
+        <a href="{% url 'alquiler_create' %}" class="btn btn-primary">Crear nuevo alquiler</a>
+    </div>
+    <div class="table-responsive">
+        <table class="table table-striped table-bordered">
+            <thead class="thead-dark">
+                <tr>
+                    <th>ID</th>
+                    <th>Cliente</th>
+                    <th>Evento</th>
+                    <th>Fecha Alquiler</th>
+                    <th>Hora Inicio</th>
+                    <th>Costo</th>
+                    <th>Estado</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for alquiler in alquileres %}
+                <tr>
+                    <td>{{ alquiler.idalquiler }}</td>
+                    <td>{{ alquiler.idcliente.nombres }} {{ alquiler.idcliente.apellidos }}</td>
+                    <td>{{ alquiler.idevento.descripcion }}</td>
+                    <td>{{ alquiler.fecha_alquiler }}</td>
+                    <td>{{ alquiler.horainicio_reserva }}</td>
+                    <td>{{ alquiler.costo_alquiler }}</td>
+                    <td>
+                        <span class="badge badge-{{ alquiler.estado_de_alquiler|lower }}">{{ alquiler.estado_de_alquiler }}</span>
+                    </td>
+                    <td>
+                        <div class="btn-group btn-group-sm">
+                            <a href="{% url 'alquiler_update' alquiler.idalquiler %}" class="btn btn-outline-primary">Editar</a>
+                            <a href="{% url 'alquiler_delete' alquiler.idalquiler %}" class="btn btn-outline-danger">Eliminar</a>
+                            <a href="https://forms.office.com/Pages/ResponsePage.aspx?id=AHmhMYl1_EyxGvToPCe47Rw-weWsKyFMv5Mu899-dpVUQ0RLNzBPQlRTR081Q0dPMUVWTEJHRzNORS4u" class="btn btn-outline-success">Enviar Recibo</a>
+                        </div>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}

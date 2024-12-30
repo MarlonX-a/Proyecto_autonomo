@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Fotos de Servicio</title>
+</head>
+<body>
+    <h1>Fotos de Servicio</h1>
+    <a href="{% url 'foto_servicio_create' %}">Crear Foto de Servicio</a>
+    <table>
+        <thead>
+            <tr>
+                <th>Descripción</th>
+                <th>Fecha de Publicación</th>
+                <th>Imagen</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for foto in fotos_servicio %}
+            <tr>
+                <td>{{ foto.descripcion_foto }}</td>
+                <td>{{ foto.fecha_publicacion }}</td>
+                <td><img src="{{ foto.url_imagen.url }}" alt="Foto de Servicio" width="100"></td>
+                <td>
+                    <a href="{% url 'foto_servicio_edit' foto.pk %}">Editar</a> | 
+                    <a href="{% url 'foto_servicio_delete' foto.pk %}">Eliminar</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>
+{% endblock %}

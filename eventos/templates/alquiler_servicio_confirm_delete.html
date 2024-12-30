@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<link rel="stylesheet" href="{% static 'eventos/css/eliminar.css' %}">
+
+<h1>¿Seguro que quieres eliminar este alquiler-servicio?</h1>
+<p>ID Alquiler: {{ alquiler_servicio.idalquiler.idalquiler }}</p>
+<p>Servicio: {{ alquiler_servicio.idservicio.descripcion_servicio }}</p>
+<form method="post">
+  {% csrf_token %}
+  <button type="submit">Sí, eliminar</button>
+</form>
+<a href="{% url 'alquiler_servicio_list' %}">Cancelar</a>
+{% endblock %}

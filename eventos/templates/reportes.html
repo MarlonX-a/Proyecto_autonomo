@@ -1,0 +1,33 @@
+
+{% extends 'base.html' %}
+{% block content %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Reportes</title>
+</head>
+<body>
+    <h1>Reportes de Alquileres</h1>
+
+    <!-- Gráfico de cantidad de alquileres -->
+    <h2>Cantidad de Alquileres por Mes</h2>
+    <img src="data:image/png;base64,{{ imagen_base64 }}" alt="Gráfico de Alquileres">
+
+    <!-- Clientes frecuentes -->
+    <h2>Clientes Frecuentes</h2>
+    <ul>
+        {% for cliente in clientes_frecuentes %}
+        <li>{{ cliente.cliente__nombre }}: {{ cliente.cantidad }} alquileres</li>
+        {% endfor %}
+    </ul>
+
+    <!-- Ganancias por mes -->
+    <h2>Ganancias por Mes</h2>
+    <ul>
+        {% for item in ganancias_por_mes %}
+        <li>{{ item.mes }}/{{ item.anio }}: ${{ item.ganancias }}</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
+{% endblock %}

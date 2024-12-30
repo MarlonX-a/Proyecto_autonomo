@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>Tipos de Evento</h1>
+<table>
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Nombre</th>
+            <th>Imagen</th>
+            <th>Fecha de Creación</th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for tipo in tipos_evento %}
+        <tr>
+            <td>{{ tipo.idTipo_De_Evento }}</td>
+            <td>{{ tipo.nombre_evento }}</td>
+            <td>
+                {% if tipo.url_imagen %}
+                <img src="{{ tipo.url_imagen.url }}" alt="{{ tipo.nombre_evento }}" width="100">
+                {% else %}
+                Sin imagen
+                {% endif %}
+            </td>
+            <td>{{ tipo.fecha_creacion }}</td>
+            <td>
+                <a href="{% url 'tipoevento_update' tipo.idTipo_De_Evento %}">Editar</a>
+                <a href="{% url 'tipoevento_delete' tipo.idTipo_De_Evento %}">Eliminar</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+<a href="{% url 'tipoevento_create' %}">Crear nuevo tipo de evento</a>
+{% endblock %}

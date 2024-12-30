@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<link rel="stylesheet" href="{% static 'eventos/css/eliminar.css' %}">
+
+  <h2>¿Seguro que deseas eliminar esta promoción?</h2>
+  <p><strong>{{ promocion.nombre }}</strong></p>
+  <form method="post">
+    {% csrf_token %}
+    <button type="submit">Eliminar</button>
+    <a href="{% url 'promocion_list' %}">Cancelar</a>
+  </form>
+{% endblock %}

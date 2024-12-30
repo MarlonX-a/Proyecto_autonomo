@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<link rel="stylesheet" href="{% static 'eventos/css/list2.css' %}">
+
+  <h2>Lista de Promociones</h2>
+  <a href="{% url 'promocion_create' %}">Crear nueva promoción</a>
+  <table>
+    <tr>
+      <th>Nombre</th>
+      <th>Descripción</th>
+      <th>Fecha Inicio</th>
+      <th>Fecha Fin</th>
+      <th>Acciones</th>
+    </tr>
+    {% for promocion in promociones %}
+      <tr>
+        <td>{{ promocion.descripcion_promocion }}</td>
+        <td>{{ promocion.valor_referencial_promo }}</td>
+        <td>{{ promocion.fecha_vigencia }}</td>
+        <td>{{ promocion.fecha_caducidad }}</td>
+        <td>
+          <a href="{% url 'promocion_update' promocion.idpromocion %}">Editar</a>
+          <a href="{% url 'promocion_delete' promocion.idpromocion %}">Eliminar</a>
+        </td>
+      </tr>
+    {% endfor %}
+  </table>
+{% endblock %}
+

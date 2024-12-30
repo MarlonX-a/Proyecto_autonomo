@@ -1,0 +1,182 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="home-container">
+    <!-- Estilos CSS embebidos -->
+    <style>
+        /* Estilos generales */
+        .home-container {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+            background-color: #f0f2f5;
+        }
+
+        /* Sección de bienvenida */
+        .welcome-section {
+            text-align: center;
+            margin-bottom: 40px;
+            padding: 40px;
+            background: linear-gradient(135deg, #2c3e50, #34495e);
+            color: #fff;
+            border-radius: 10px;
+        }
+
+        .welcome-title {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+
+        .highlight {
+            color: #1abc9c;
+            font-weight: bold;
+        }
+
+        .welcome-text {
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+        }
+
+        .btn-primary {
+            background-color: #1abc9c;
+            color: #fff;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: background-color 0.3s ease-in-out;
+        }
+
+        .btn-primary:hover {
+            background-color: #16a085;
+        }
+
+        /* Secciones en grid */
+        .eventos-grid, .servicios-grid, .promociones-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            padding: 20px;
+        }
+
+        .evento-card, .servicio-card, .promocion-card {
+            background: #fff;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            text-align: center;
+            padding: 15px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .evento-card:hover, .servicio-card:hover, .promocion-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+        }
+
+        .evento-card-img img {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+        }
+
+        .no-eventos, .no-servicios, .no-promociones {
+            font-size: 1.2rem;
+            color: #555;
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        .section-title {
+            font-size: 2rem;
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        .btn-secondary {
+            display: inline-block;
+            background-color: #007bff;
+            color: #fff;
+            padding: 8px 15px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: background-color 0.3s ease-in-out;
+        }
+
+        .btn-secondary:hover {
+            background-color: #0056b3;
+        }
+    </style>
+
+    <!-- Bienvenida -->
+    <section class="welcome-section">
+        <h1 class="welcome-title">Bienvenido al Gestor de Eventos de <span class="highlight">{{ nombre_negocio }}</span></h1>
+        <p class="welcome-text">¡Gestiona tus eventos de forma sencilla y profesional!</p>
+        <a href="{% url 'evento_list' %}" class="btn btn-primary">Explorar Eventos</a>
+    </section>
+
+    <!-- Eventos disponibles -->
+    <section class="eventos-section">
+        <h2 class="section-title">Eventos Disponibles</h2>
+        <div class="eventos-grid">
+            {% if eventos %}
+                {% for evento in eventos %}
+                <div class="evento-card">
+                    <div class="evento-card-img">
+                        <img src="{{ evento.tipo_de_evento.url_imagen.url }}" alt="Imagen del evento">
+                    </div>
+                    <div class="evento-card-body">
+                        <h3 class="evento-title">{{ evento.nombre }}</h3>
+                        <p class="evento-desc">{{ evento.descripcion }}</p>
+                    </div>
+                </div>
+                {% endfor %}
+            {% else %}
+                <p class="no-eventos">No hay eventos disponibles en este momento.</p>
+            {% endif %}
+        </div>
+    </section>
+
+    <!-- Servicios disponibles -->
+    <section class="servicios-section">
+        <h2 class="section-title">Servicios Disponibles</h2>
+        <div class="servicios-grid">
+            {% if servicios %}
+                {% for servicio in servicios %}
+                <div class="servicio-card">
+                    <h3 class="servicio-title">{{ servicio.descripcion_servicio }}</h3>
+                    <p class="servicio-precio">Precio: ${{ servicio.valor_unidad }}</p>
+                    <p class="servicio-desc">Unidad: {{ servicio.descripcion_unidad }}</p>
+                    <p class="servicio-desc">Fecha de Entrega: {{ servicio.fecha_entrega|date:"d/m/Y H:i" }}</p>
+                    <p class="servicio-desc">Última actualización: {{ servicio.fecha_actualizacion_precio|date:"d/m/Y H:i" }}</p>
+                </div>
+                {% endfor %}
+            {% else %}
+                <p class="no-servicios">No hay servicios disponibles en este momento.</p>
+            {% endif %}
+        </div>
+    </section>
+
+    <!-- Promociones -->
+    <section class="promociones-section">
+        <h2 class="section-title">Promociones Activas</h2>
+        <div class="promociones-grid">
+            {% if promociones %}
+                {% for promocion in promociones %}
+                    {% if promocion.estado_promocion == 'A' %}
+                    <div class="promocion-card">
+                        <h3 class="promocion-title">{{ promocion.descripcion_promocion }}</h3>
+                        <p class="promocion-desc">Descuento: {{ promocion.porcentaje_promocion }}%</p>
+                        <p class="promocion-desc">Valor Referencial: ${{ promocion.valor_referencial_promo }}</p>
+                        <p class="promocion-desc">Tipo: {{ promocion.tipo_promocion }}</p>
+                        <p class="promocion-desc">Vigencia: {{ promocion.fecha_vigencia|date:"d/m/Y" }} - {{ promocion.fecha_caducidad|date:"d/m/Y" }}</p>
+                    </div>
+                    {% endif %}
+                {% endfor %}
+            {% else %}
+                <p class="no-promociones">No hay promociones activas en este momento.</p>
+            {% endif %}
+        </div>
+    </section>
+</div>
+{% endblock %}

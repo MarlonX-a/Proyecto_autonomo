@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% block content %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Lista de Fotos de Alquiler</title>
+</head>
+<body>
+    <h1>Fotos de Alquiler</h1>
+    <a href="{% url 'crear_foto_alquiler' %}">Crear Nueva Foto</a>
+    <ul>
+        {% for foto in fotos %}
+            <li>
+                {{ foto.descripcion }} - {{ foto.fecha_subida }}
+                <a href="{% url 'editar_foto_alquiler' foto.idFoto_Alquiler %}">Editar</a>
+                <a href="{% url 'eliminar_foto_alquiler' foto.idFoto_Alquiler %}">Eliminar</a>
+            </li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
+{% endblock %}
