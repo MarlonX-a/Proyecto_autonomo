@@ -164,3 +164,5 @@ EMAIL_HOST_PASSWORD = 'eysl onty xcwc inbz'
 
 LOGIN_URL = '/login/'
 
+CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap4"
+CRISPY_TEMPLATE_PACK = "bootstrap4"
