@@ -1,16 +1,15 @@
 import os
 import django
-from django.contrib.auth.models import User
 
-os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'centro_de_eventos.settings')
+# Configura Django (necesario para que el ORM funcione)
+os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'tu_proyecto.settings')
 django.setup()
 
-username = 'admin'
-email = 'admin@example.com'
-password = 'adminpassword'
+# Ahora puedes importar los modelos
+from django.contrib.auth.models import User
 
-if not User.objects.filter(username=username).exists():
-    User.objects.create_superuser(username=username, email=email, password=password)
-    print('Superuser created.')
-else:
-    print('Superuser already exists.')
+# Crear el superusuario
+user = User.objects.create_superuser('admin', 'admin@example.com', 'password')
+user.save()
+
+print("Superusuario creado con éxito.")
