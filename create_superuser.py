@@ -6,8 +6,8 @@ os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'centro_de_eventos.settings')
 django.setup()
 
 username = 'jair'
-email = 'hola@example.com'
-password = '123'
+email = 'admin@example.com'
+password = '1234'
 
 if not User.objects.filter(username=username).exists():
     User.objects.create_superuser(username=username, email=email, password=password)
